@@ -1,2 +1,2 @@
-# FestFinder
-FestFinder programacion movil
+# Ejecucion
+npx expo start
