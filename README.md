@@ -1,2 +1,3 @@
-# Ejecucion
+# Ejecución
+cd frontend
 npx expo start
