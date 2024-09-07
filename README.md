@@ -1,4 +1,4 @@
-# Intalar
+# Instalar
 npm install -g expo-cli
 # Ejecución
 cd frontend
