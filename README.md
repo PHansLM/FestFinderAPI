@@ -1,6 +1,8 @@
 # Instalar
-npm install -g expo-cli
+`cd frontend`
+
+`npm install -g expo-cli`
+
+`npm i`
 # Ejecución
-cd frontend
-npm i
-npx expo start
+`npx expo start`
