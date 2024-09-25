@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "api",
     "corsheaders",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -80,13 +81,13 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'QFEsrelihKLMcGNFbwQjKahEUWUmqSuH',
-        'HOST': 'junction.proxy.rlwy.net',
-        'PORT': '40881',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": "QFEsrelihKLMcGNFbwQjKahEUWUmqSuH",
+        "HOST": "junction.proxy.rlwy.net",
+        "PORT": "40881",
     }
 }
 
