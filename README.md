@@ -23,6 +23,10 @@
 ## Ejecutar el Servidor de Desarrollo
 `python manage.py runserver` localhost:8000
 
+## En caso de usar el dispositivo movil y un cliente externo ejecutar lo siguiente
+`python manage.py runserver 0.0.0.0:8000`
+
+
 ## [Opcional] Crear un superusuario para acceder al panel de administración
 
 `python manage.py createsuperuser` localhost:8000/admin (los modelos se registran en api/admin.py)
