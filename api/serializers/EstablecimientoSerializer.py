@@ -8,4 +8,4 @@ class EstablecimientoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Establecimiento
-        fields = ['id_establecimiento', 'nombre', 'direccion', 'coordenada_x', 'coordenada_y', 'descripcion', 'tipo_fk', 'rango_de_precios', 'nro_ref', 'em_ref']
+        fields = ['id_establecimiento', 'nombre', 'banner', 'logo', 'direccion', 'coordenada_x', 'coordenada_y', 'descripcion', 'tipo_fk', 'rango_de_precios', 'nro_ref', 'em_ref']

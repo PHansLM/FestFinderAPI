@@ -17,7 +17,7 @@ from api.views.Genero_Evento_Vista import CrearGeneroEvento, ListarGenerosEvento
 from api.views.Evento_Vista import CrearEvento, ListarEventos
 from api.views.Entrada_Vista import CrearEntrada, ListarEntradasEvento
 from api.views.Consumo_Vista import CrearConsumo, ListarConsumosPorEstablecimiento
-from api.views.Usuario_Vista import CrearUsuario, ListarUsuarios
+from api.views.Usuario_Vista import CrearUsuario, ListarUsuarios, LoginUsuario
 from api.views.Visita_Vista import (
     RegistrarVisita,
     VisitasPorEstablecimiento,
@@ -147,4 +147,6 @@ urlpatterns = [
         ValoracionesPorEvento.as_view(),
         name="valoraciones-por-evento",
     ),
+    path('api/logear_usuario/', LoginUsuario.as_view(), name='logear-usuario'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
