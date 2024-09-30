@@ -60,7 +60,7 @@ class LoginUsuario(APIView):
                     serializer = UsuarioSerializer(user)
                     return Response(serializer.data, status=status.HTTP_200_OK)
                 else:
-                    logger.warning(f"Contraseña {password} incorrecta para el usuario {email}")
+                    logger.warning("Contraseña {password} incorrecta para el usuario {email}")
                     return Response({"detail": "Contraseña incorrecta"}, status=status.HTTP_401_UNAUTHORIZED)
             except Usuario.DoesNotExist:
                 logger.warning(f"Usuario con email {email} no encontrado")

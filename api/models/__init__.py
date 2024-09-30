@@ -13,3 +13,6 @@ from .Usuario import Usuario
 from .ValoracionEstablecimiento import ValoracionEstablecimiento
 from .ValoracionEvento import ValoracionEvento
 from .Visita import Visita
+from .GaleriaEvento import GaleriaEvento
+from .GaleriaEstablecimiento import GaleriaEstablecimiento
+from .horariosEstablecimiento import horariosEstablecimiento
