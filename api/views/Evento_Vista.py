@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from ..models import Evento
 from ..serializers import EventoSerializer
+from datetime import datetime, timedelta
 
 # Vista para crear un evento
 class CrearEvento(APIView):
@@ -17,5 +18,50 @@ class CrearEvento(APIView):
 class ListarEventos(APIView):
     def get(self, request, *args, **kwargs):
         eventos = Evento.objects.all()
+        serializer = EventoSerializer(eventos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# Vista para listar los eventos que ocurren este mes (pero que aún no ocurrieron)
+class ListarEventosMes(APIView):
+    def post(self, request, *args, **kwargs):
+        # Obtener la fecha enviada por el usuario en el request
+        fecha_usuario = request.data.get('fecha')
+
+        if not fecha_usuario:
+            return Response({"error": "No se envió ninguna fecha."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            # Convertir la fecha enviada por el usuario a objeto datetime
+            fecha_usuario = datetime.strptime(fecha_usuario, '%Y-%m-%d').date()
+        except ValueError:
+            return Response({"error": "Formato de fecha inválido. Use YYYY-MM-DD."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Calcular el primer y último día del mes según la fecha enviada por el usuario
+        primer_dia_mes = fecha_usuario.replace(day=1)
+        ultimo_dia_mes = (primer_dia_mes + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+
+        # Filtrar eventos que ocurren dentro del mes enviado por el usuario y que aún no han ocurrido
+        eventos = Evento.objects.filter(fecha_inicio__gte=fecha_usuario, fecha_inicio__range=[primer_dia_mes, ultimo_dia_mes])
+        serializer = EventoSerializer(eventos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# Vista para listar los eventos que ocurren hoy según la fecha enviada por el usuario
+class ListarEventosHoy(APIView):
+    def post(self, request, *args, **kwargs):
+        # Obtener la fecha enviada por el usuario en el request
+        fecha_usuario = request.data.get('fecha')
+
+        if not fecha_usuario:
+            return Response({"error": "No se envió ninguna fecha."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            # Convertir la fecha enviada por el usuario a objeto datetime
+            fecha_usuario = datetime.strptime(fecha_usuario, '%Y-%m-%d').date()
+        except ValueError:
+            return Response({"error": "Formato de fecha inválido. Use YYYY-MM-DD."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Filtrar eventos que ocurren hoy en la fecha enviada por el usuario
+        eventos = Evento.objects.filter(fecha_inicio__lte=fecha_usuario, fecha_final__gte=fecha_usuario)
         serializer = EventoSerializer(eventos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
