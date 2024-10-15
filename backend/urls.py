@@ -80,6 +80,9 @@ urlpatterns = [
         EstablecimientosPorEtiqueta.as_view(),
         name="establecimientos-por-etiqueta",
     ),
+    path("api/categorias-establecimientos/", ListarTiposEstablecimiento.as_view(), name="listar-categorias-establecimiento"),
+    path("api/establecimientos/", ListarEstablecimientos.as_view(), name="listar-establecimiento"),
+
     path("api/genero-evento/", CrearGeneroEvento.as_view(), name="crear-genero-evento"),
     path(
         "api/generos-evento/",

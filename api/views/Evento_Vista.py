@@ -41,7 +41,7 @@ class ListarEventosMes(APIView):
         ultimo_dia_mes = (primer_dia_mes + timedelta(days=32)).replace(day=1) - timedelta(days=1)
 
         # Filtrar eventos que ocurren dentro del mes enviado por el usuario y que aún no han ocurrido
-        eventos = Evento.objects.filter(fecha_inicio__gte=fecha_usuario, fecha_inicio__range=[primer_dia_mes, ultimo_dia_mes])
+        eventos = Evento.objects.filter(fecha_final__gte=fecha_usuario, fecha_final__range=[primer_dia_mes, ultimo_dia_mes])
         serializer = EventoSerializer(eventos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
