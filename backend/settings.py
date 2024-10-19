@@ -83,11 +83,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "railway",
-        "USER": "postgres",
-        "PASSWORD": "QFEsrelihKLMcGNFbwQjKahEUWUmqSuH",
-        "HOST": "junction.proxy.rlwy.net",
-        "PORT": "40881",
+        "NAME": "verceldb",
+        "USER": "default",
+        "PASSWORD": "7sLQtPX3RqGd",
+        "HOST": "ep-sparkling-leaf-a4bqdpzb-pooler.us-east-1.aws.neon.tech",
+        "PORT": "5432",
     }
 }
 
