@@ -5,3 +5,4 @@ from .EtiquetaSerializer import EtiquetaSerializer
 from .EtiquetaEstablecimientoSerializer import EtiquetaEstablecimientoSerializer
 from .UsuarioSerializer import UsuarioSerializer
 from .EventoSerializer import EventoSerializer
+from .GeneroEventoSerializer import GeneroEventoSerializer
