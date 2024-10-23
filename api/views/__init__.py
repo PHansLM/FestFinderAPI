@@ -1,4 +1,5 @@
 from .SubirImagen import SubirImagen
+from . RegistrarEstablecimiento import RegistrarEstablecimiento
 from .ListarTiposEstablecimiento import ListarTiposEstablecimiento
 from .ListarEstablecimientos import ListarEstablecimientos
 from .AgregarTipoEstablecimiento import AgregarTipoEstablecimiento
