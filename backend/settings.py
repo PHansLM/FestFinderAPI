@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-1aitk5@sibm1f0#ir5d^d_hkc&&7#+*g95zxq@!sz3!5&x80on"
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+DEBUG = 'RENDER' not in os.environ
+
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -81,14 +88,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "verceldb",
-        "USER": "default",
-        "PASSWORD": "7sLQtPX3RqGd",
-        "HOST": "ep-sparkling-leaf-a4bqdpzb-pooler.us-east-1.aws.neon.tech",
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(
+        # Reemplaza con tu string de conexión actual
+        default='postgresql://default:7sLQtPX3RqGd@ep-sparkling-leaf-a4bqdpzb-pooler.us-east-1.aws.neon.tech:5432/verceldb',
+        conn_max_age=600
+    )
 }
 
 
